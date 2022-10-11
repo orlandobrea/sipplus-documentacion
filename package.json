@@ -4,7 +4,7 @@
   "description": "",
   "main": "dictionary.js",
   "scripts": {
-    "build": "rm html/api.html && raml2html -i api.raml -o html/api.html "
+    "build": "mkdir html && raml2html -i api.raml -o html/api.html "
   },
   "repository": {
     "type": "git",
