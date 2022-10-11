@@ -1,0 +1,23 @@
+{
+  "name": "sipplus-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dictionary.js",
+  "scripts": {
+    "build": "rm html/api.html && raml2html -i api.raml -o html/api.html "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orlandobrea/sipplus-documentacion.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/orlandobrea/sipplus-documentacion/issues"
+  },
+  "homepage": "https://github.com/orlandobrea/sipplus-documentacion#readme",
+  "dependencies": {
+    "raml2html": "^7.8.0"
+  }
+}
