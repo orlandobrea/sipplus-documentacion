@@ -1,0 +1,595 @@
+<!DOCTYPE HTML><html><head><title>SIP+</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 7.8.0"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script><script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+  $('.page-header pre code, .top-resource-description pre code, .modal-body pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+  $('[data-toggle]').click(function() {
+    var selector = $(this).data('target') + ' pre code';
+    $(selector).each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+  });
+
+  // open modal on hashes like #_action_get
+  $(window).bind('hashchange', function(e) {
+    var anchor_id = document.location.hash.substr(1); //strip #
+    var element = $('#' + anchor_id);
+
+    // do we have such element + is it a modal?  --> show it
+    if (element.length && element.hasClass('modal')) {
+      element.modal('show');
+    }
+  });
+
+  // execute hashchange on first page load
+  $(window).trigger('hashchange');
+
+  // remove url fragment on modal hide
+  $('.modal').on('hidden.bs.modal', function() {
+    try {
+      if (history && history.replaceState) {
+          history.replaceState({}, '', '#');
+      }
+    } catch(e) {}
+  });
+});
+    </script><style>
+      .hljs {
+  background: transparent;
+}
+.parent {
+  color: #999;
+}
+.list-group-item > .badge {
+  float: none;
+  margin-right: 6px;
+}
+.panel-title > .methods {
+  float: right;
+}
+.badge {
+  border-radius: 0;
+  text-transform: uppercase;
+  width: 70px;
+  font-weight: normal;
+  color: #f3f3f6;
+  line-height: normal;
+}
+.badge_get {
+  background-color: #63a8e2;
+}
+.badge_post {
+  background-color: #6cbd7d;
+}
+.badge_put {
+  background-color: #22bac4;
+}
+.badge_delete {
+  background-color: #d26460;
+}
+.badge_patch {
+  background-color: #ccc444;
+}
+.list-group,
+.panel-group {
+  margin-bottom: 0;
+}
+.panel-group .panel+.panel-white {
+  margin-top: 0;
+}
+.panel-group .panel-white {
+  border-bottom: 1px solid #F5F5F5;
+  border-radius: 0;
+}
+.panel-white:last-child {
+  border-bottom-color: white;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.panel-white .panel-heading {
+  background: white;
+}
+.tab-pane ul {
+  padding-left: 2em;
+}
+.tab-pane h1 {
+  font-size: 1.3em;
+}
+.tab-pane h2 {
+  font-size: 1.2em;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #ddd;
+}
+.tab-pane h3 {
+  font-size: 1.1em;
+}
+.tab-content {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+#sidebar {
+  margin-top: 30px;
+  padding-right: 5px;
+  overflow: auto;
+  height: 90%;
+}
+.top-resource-description {
+  border-bottom: 1px solid #ddd;
+  background: #fcfcfc;
+  padding: 15px 15px 0 15px;
+  margin: -15px -15px 10px -15px;
+}
+.resource-description {
+  border-bottom: 1px solid #fcfcfc;
+  background: #fcfcfc;
+  padding: 15px 15px 0 15px;
+  margin: -15px -15px 10px -15px;
+}
+.resource-description p:last-child {
+  margin: 0;
+}
+.list-group .badge {
+  float: left;
+}
+.method_description {
+  margin-left: 85px;
+}
+.method_description p:last-child {
+  margin: 0;
+}
+.list-group-item {
+  cursor: pointer;
+}
+.list-group-item:hover {
+  background-color: #f5f5f5;
+}
+pre code {
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}
+.items {
+  background: #f5f5f5;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+}
+.examples {
+  margin-left: 0.5em;
+}
+.resource-modal li > ul {
+  margin-bottom: 1em;
+}
+.required {
+  color: #f00;
+}
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>SIP+ <small>version v1</small></h1><p>https://{SIP+Server}:9000</p><ul><li><strong>SIP+Server</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3 id="introduccion"><a href="#introduccion">Introduccion</a></h3><p>Documentación de la API de SIP+.</p><p>Para realizar pruebas se puede utilizar Postman. Para autenticación se debe seleccionar <code>Authorization -&gt; Basic Auth</code> e incluir un Usuario y Password de SipPlus.</p><h3 id="documentaci_n_oficial"><a href="#documentaci_n_oficial">Documentación oficial</a></h3><p>Para ver el diccionario de SIP+ (significado de cada código) visitar <a href="http://www.sipplus.org/fromDocs/dictionary.js">dictionary.js</a>.</p><p>Para ver la documentación oficial de los WebServices visitar <a href="http://www.sipplus.org/fromDocs/webservices-provided.html">Wes services provistos por Sip+</a></p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="record_ar" class="panel-title">/record/AR</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_record_ar__tipodocumento___numero_"><span class="parent">/record/AR/{tipoDocumento}</span>/{numero}</a> <span class="methods"><a href="#record_ar__tipodocumento___numero__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_record_ar__tipodocumento___numero_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#record_ar__tipodocumento___numero__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Obtener los datos de un paciente. Ejemplo GET {baseUri}/record/AR/DNI/12345678</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="record_ar__tipodocumento___numero__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/record/AR/{tipoDocumento}</span>/{numero}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Obtener los datos de un paciente. Ejemplo GET {baseUri}/record/AR/DNI/12345678</p></div><ul class="nav nav-tabs"><li class="active"><a href="#record_ar__tipodocumento___numero__get_request" data-toggle="tab">Request</a></li><li><a href="#record_ar__tipodocumento___numero__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="record_ar__tipodocumento___numero__get_request"><h3>URI Parameters</h3><ul><li><strong>tipoDocumento</strong>: <em><span class="required">required</span>(string)</em><p>Tipo de documento (DNI/OTR)</p></li><li><strong>numero</strong>: <em><span class="required">required</span>(string)</em><p>Numero de documento</p></li></ul><h3>Query Parameters</h3><ul><li><strong>basic_auth</strong>: <em><span class="required">required</span>(string)</em><p>user:password</p></li></ul></div><div class="tab-pane" id="record_ar__tipodocumento___numero__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "1018": "País de identificación (text)",
+  "1019": "Tipo de identificación (text)",
+  "0001": "Nombre (text)",
+  "pregnancies": {
+    "5": {
+      "children": {
+        "1": {
+          "0299": "Ligadura cordón (enumeration) [&#39;&lt; 1 min.&#39;,&#39;1 a 3 min.&#39;,&#39;&lt; 30 seg.&#39;,&#39;30 seg. a 1 min.&#39;,&#39;&gt; 1 min.&#39;,&#39;&gt; 3 min.&#39;]",
+          "0449": "Inmunización Hepatitis B (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;n/c&#39;]",
+          "0447": "RN Tamizaje - Chagas (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+          "0412": "TTO. VDRL (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;n/c&#39;,&#39;s/d&#39;]",
+          "0446": "RN Tamizaje - Audición (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+          "0640": "Lactancia materna inicio precoz (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;n/c&#39;]",
+          "0441": "VIH en RN - Tratamiento (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;n/c&#39;,&#39;s/d&#39;]",
+          "0445": "RN Reanimación - Medicación (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0297": "Placenta completa (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0286": "Embarazo múltiple - orden (numeric)",
+          "0321": "Apgar 1er. Minuto (numeric)",
+          "0375": "Edad  &lt; 1 dia (boolean)",
+          "0347": "RN Tamizaje - Toxo IgM (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+          "0290": "Código operatorio (code)",
+          "0310": "RN Sexo (enumeration) [&#39;femenino&#39;,&#39;masculino&#39;,&#39;no definido&#39;]",
+          "0325": "RN Reanimación - Máscara (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0378": "BCG (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0336": "Enfermedades RN (enumeration) [&#39;1 o más&#39;,&#39;ninguna&#39;]",
+          "0395": "Peso RN al egreso (numeric)",
+          "0343": "RN Tamizaje - VDRL (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+          "0283": "Hora nacimiento (time)",
+          "0329": "Fallece lugar de parto (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0370": "Egreso RN - hora (time)",
+          "0320": "RN Peso para Edad Gestacional (enumeration) [&#39;adecuado&#39;,&#39;pequeño&#39;,&#39;grande&#39;]",
+          "0371": "Egreso RN (enumeration) [&#39;vivo&#39;,&#39;fallece&#39;,&#39;traslado&#39;]",
+          "0282": "Nacimiento (enumeration) [&#39;vivio&#39;,&#39;muerto ante parto&#39;,&#39;muerto parto&#39;,&#39;muerto ignora momento&#39;]",
+          "0377": "Boca arriba (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0293": "Desgarros (no) (boolean)",
+          "0425": "Egreso RN - fecha (date)",
+          "0331": "Atendió Parto (enumeration) [&#39;medico&#39;,&#39;obstetra&#39;,&#39;enfermera&#39;,&#39;auxiliar&#39;,&#39;estudiante&#39;,&#39;empirica&#39;,&#39;otro&#39;,&#39;pediatra&#39;]",
+          "0346": "RN Tamizaje - Bilirrubina (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+          "0335": "Defectos congénitos (enumeration) [&#39;no&#39;,&#39;menor&#39;,&#39;mayor&#39;,&#39;si&#39;]",
+          "0324": "RN Reanimación - Aspiración (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0313": "Perimetro cefálico (numeric)",
+          "0327": "RN Reanimación - Masaje (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0376": "Alimento al alta (enumeration) [&#39;lactancia exclusiva&#39;,&#39;parcial&#39;,&#39;artificial&#39;]",
+          "0296": "Ocitócicos postalumbramiento (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0323": "RN Reanimación - Estimulación (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0316": "Edad gestacional RN - días (numeric)",
+          "0292": "Episiotomía (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0388": "Nro. Historia RN (text)",
+          "0298": "Placenta retenida (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0287": "Terminación (enumeration) [&#39;vaginal espontánea&#39;,&#39;cesárea&#39;,&#39;fórceps&#39;,&#39;vacuum&#39;,&#39;otra&#39;]",
+          "0291": "Posición parto (enumeration) [&#39;sentada&#39;,&#39;cuclillas&#39;,&#39;acostada&#39;]",
+          "0333": "Atendió Neonato (enumeration) [&#39;medico&#39;,&#39;obstetra&#39;,&#39;enfermera&#39;,&#39;auxiliar&#39;,&#39;estudiante&#39;,&#39;empirica&#39;,&#39;otro&#39;,&#39;pediatra&#39;]",
+          "0326": "RN Reanimación - Oxígeno (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0348": "RN Tamizaje - Meconio 1er. día (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0311": "Peso al nacer (numeric)",
+          "0322": "Apgar 5to. Minuto (numeric)",
+          "0315": "Edad gestacional RN (numeric)",
+          "0330": "Referido (enumeration) [&#39;alojamiento conjunto&#39;,&#39;neonatología&#39;,&#39;otro hospital&#39;]",
+          "0284": "Fecha de nacimiento (date)",
+          "0389": "Nombre RN (text)",
+          "0373": "Fallece lugar de traslado (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;sin dato&#39;]",
+          "0295": "Ocitócicos prealumbramiento (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0328": "RN Reanimación - Tubo (enumeration) [&#39;no&#39;,&#39;si&#39;]"
+        },
+        "2": {
+          "0299": "Ligadura cordón (enumeration) [&#39;&lt; 1 min.&#39;,&#39;1 a 3 min.&#39;,&#39;&lt; 30 seg.&#39;,&#39;30 seg. a 1 min.&#39;,&#39;&gt; 1 min.&#39;,&#39;&gt; 3 min.&#39;]",
+          "0449": "Inmunización Hepatitis B (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;n/c&#39;]",
+          "0447": "RN Tamizaje - Chagas (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+          "0412": "TTO. VDRL (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;n/c&#39;,&#39;s/d&#39;]",
+          "0446": "RN Tamizaje - Audición (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+          "0640": "Lactancia materna inicio precoz (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;n/c&#39;]",
+          "0441": "VIH en RN - Tratamiento (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;n/c&#39;,&#39;s/d&#39;]",
+          "0445": "RN Reanimación - Medicación (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0297": "Placenta completa (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0286": "Embarazo múltiple - orden (numeric)",
+          "0321": "Apgar 1er. Minuto (numeric)",
+          "0375": "Edad  &lt; 1 dia (boolean)",
+          "0347": "RN Tamizaje - Toxo IgM (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+          "0290": "Código operatorio (code)",
+          "0310": "RN Sexo (enumeration) [&#39;femenino&#39;,&#39;masculino&#39;,&#39;no definido&#39;]",
+          "0325": "RN Reanimación - Máscara (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0378": "BCG (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0336": "Enfermedades RN (enumeration) [&#39;1 o más&#39;,&#39;ninguna&#39;]",
+          "0395": "Peso RN al egreso (numeric)",
+          "0343": "RN Tamizaje - VDRL (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+          "0283": "Hora nacimiento (time)",
+          "0329": "Fallece lugar de parto (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0370": "Egreso RN - hora (time)",
+          "0320": "RN Peso para Edad Gestacional (enumeration) [&#39;adecuado&#39;,&#39;pequeño&#39;,&#39;grande&#39;]",
+          "0371": "Egreso RN (enumeration) [&#39;vivo&#39;,&#39;fallece&#39;,&#39;traslado&#39;]",
+          "0282": "Nacimiento (enumeration) [&#39;vivio&#39;,&#39;muerto ante parto&#39;,&#39;muerto parto&#39;,&#39;muerto ignora momento&#39;]",
+          "0377": "Boca arriba (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0293": "Desgarros (no) (boolean)",
+          "0425": "Egreso RN - fecha (date)",
+          "0331": "Atendió Parto (enumeration) [&#39;medico&#39;,&#39;obstetra&#39;,&#39;enfermera&#39;,&#39;auxiliar&#39;,&#39;estudiante&#39;,&#39;empirica&#39;,&#39;otro&#39;,&#39;pediatra&#39;]",
+          "0346": "RN Tamizaje - Bilirrubina (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+          "0335": "Defectos congénitos (enumeration) [&#39;no&#39;,&#39;menor&#39;,&#39;mayor&#39;,&#39;si&#39;]",
+          "0324": "RN Reanimación - Aspiración (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0313": "Perimetro cefálico (numeric)",
+          "0327": "RN Reanimación - Masaje (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0376": "Alimento al alta (enumeration) [&#39;lactancia exclusiva&#39;,&#39;parcial&#39;,&#39;artificial&#39;]",
+          "0296": "Ocitócicos postalumbramiento (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0323": "RN Reanimación - Estimulación (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0316": "Edad gestacional RN - días (numeric)",
+          "0292": "Episiotomía (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0388": "Nro. Historia RN (text)",
+          "0345": "RN Tamizaje - Hbpatía (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+          "0298": "Placenta retenida (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0287": "Terminación (enumeration) [&#39;vaginal espontánea&#39;,&#39;cesárea&#39;,&#39;fórceps&#39;,&#39;vacuum&#39;,&#39;otra&#39;]",
+          "0291": "Posición parto (enumeration) [&#39;sentada&#39;,&#39;cuclillas&#39;,&#39;acostada&#39;]",
+          "0333": "Atendió Neonato (enumeration) [&#39;medico&#39;,&#39;obstetra&#39;,&#39;enfermera&#39;,&#39;auxiliar&#39;,&#39;estudiante&#39;,&#39;empirica&#39;,&#39;otro&#39;,&#39;pediatra&#39;]",
+          "0326": "RN Reanimación - Oxígeno (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0348": "RN Tamizaje - Meconio 1er. día (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0311": "Peso al nacer (numeric)",
+          "0322": "Apgar 5to. Minuto (numeric)",
+          "0315": "Edad gestacional RN (numeric)",
+          "0330": "Referido (enumeration) [&#39;alojamiento conjunto&#39;,&#39;neonatología&#39;,&#39;otro hospital&#39;]",
+          "0284": "Fecha de nacimiento (date)",
+          "0389": "Nombre RN (text)",
+          "0373": "Fallece lugar de traslado (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;sin dato&#39;]",
+          "0295": "Ocitócicos prealumbramiento (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0328": "RN Reanimación - Tubo (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+          "0344": "RN Tamizaje - Cardiov (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]"
+        }
+      },
+      "0533": "PaO2/FiO2 &lt; 200 mmHg (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0518": "Respiración jadeante (gasping) (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0522": "Alteraciones de la coagulación (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0529": "Creatinina &gt;= 300 micromoles/l ó &gt;= 3.5 mg/dl (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0503": "Administración &gt;= 3 vol. hemoderivados (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0552": "Histerectomía (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0530": "Bilirubina &gt; 100 moles/l ó &gt; 6.0 mg/dl (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0523": "Coma (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0517": "Cianosis aguda (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0528": "Plaquetas &lt; 50.000 por ml (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0642": "Variables para identificar casos de Near Miss (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0520": "Bradipnea severa (FR&lt; 6 rpm) (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0534": "Lactato &gt; 5 micromoles/l o 45 mg/dl (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0531": "pH &lt; 7.1 (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0527": "Parálisis generalizada (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0516": "Ictericia en preeclampsia (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0548": "Administración continua de agentes vasoactivos (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0639": "Ingreso a UCI &gt;= 7 días (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0524": "Inconsciencia prolongada &gt; 12 hs (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0554": "Reanimación cardio-pulmonar (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0519": "Traquipnea severa (FR &gt; 40 rpm) (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0532": "pO2 &lt; 90% &gt;= 1 hora (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0521": "Oliguria resistente a líquidos diuréticos (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0515": "Paro cardíaco (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0514": "Shock (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0526": "Convulsiones incontrolables / estado de mal epiléptico (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0550": "Intubación y ventilación no relacionada con la anestesia (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0553": "Diálisis en caso de IRA (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0525": "Accidente cerebro vascular (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0398": "Libre 2 (text)",
+      "0400": "Libre 4 (text)",
+      "0399": "Libre 3 (text)",
+      "0396": "Libre 0 (text)",
+      "0397": "Libre 1 (text)",
+      "0591": "Bacteriuria asintomática (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0564": "TVP (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0575": "Semana Influenza (numeric)",
+      "0507": "Acretismo placentario (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0410": "Gamma globulina anti D (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;n/c&#39;]",
+      "0542": "Ligaduras hemostáticas de las arterias uterinas/hipogástricas (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0444": "Sulfato Mg en Eclampsia (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0645": "Suturas B-Lynch o similares (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0498": "Síndrome Hellp (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0615": "Embolia L.A. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0438": "TDP - Prueba VIH (enumeration) [&#39;negativo&#39;,&#39;positivo&#39;,&#39;n/r&#39;,&#39;n/c&#39;]",
+      "0073": "Drogas 3er. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0433": "Tamizaje Antenatal - Prueba VIH &lt;20 sem. (enumeration) [&#39;positivo&#39;,&#39;negativo&#39;,&#39;n/c&#39;,&#39;s/d&#39;]",
+      "0604": "Diabetes Mellitus (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0652": "Hipertensión gestacional (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0619": "Alteración del estado de conciencia (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0063": "Drogas 1er. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0563": "TEP (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0599": "Atonía uterina (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0614": "Hiperemesis gravídica (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0437": "TDP - Prueba Sífilis (enumeration) [&#39;negativo&#39;,&#39;positivo&#39;,&#39;n/r&#39;,&#39;n/c&#39;]",
+      "0648": "Colestasis (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0608": "D.M. gestacional (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0595": "Infección herida cesárea (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0070": "Violencia 2do. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0626": "Otros trastornos - resumen (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0631": "Oligoamnios (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0637": "Traje antishock no neumático (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0646": "Otra complicación obstétrica (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0635": "Via venosa central (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;s/d&#39;]",
+      "0544": "Ingreso a UCI (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;s/d&#39;]",
+      "0443": "Sulfato Mg en Preeclampsia (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0632": "Polihidramnio (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0421": "Prueba sífilis treponémica &gt;= 20s (enumeration) [&#39;negativo&#39;,&#39;positivo&#39;,&#39;se desconoce&#39;,&#39;no corresponde&#39;]",
+      "0067": "Fumadora pasiva 2do. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0603": "Trastornos metabólicos (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0574": "Fecha Influenza (date)",
+      "0512": "Crisis tiroidea (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0598": "Mola hidatiforme (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0432": "Antecedentes VIH + (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0601": "Restos (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0506": "Placenta previa (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0620": "Anemia (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0570": "Tdap (enumeration) [&#39;no&#39;,&#39;si, previa embarazo&#39;,&#39;si, durante embarazo&#39;,&#39;si, postparto/aborto&#39;]",
+      "0653": "Hipertensión crónica + PE sobreimpuesta (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0440": "VIH en RN - Expuesto (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;s/d&#39;]",
+      "0409": "Embarazo Ectópico - antecedentes (numeric)",
+      "0573": "Influenza (enumeration) [&#39;no&#39;,&#39;si, previa embarazo&#39;,&#39;si, durante embarazo&#39;,&#39;si, postparto/aborto&#39;]",
+      "0623": "Neoplasia maligna (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0607": "D.M. no insulinodependiente previa (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0062": "Fumadora pasiva 1er. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0439": "TDP - ARV (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;n/c&#39;]",
+      "0436": "Tamizaje Antenatal - TARV VIH &gt;=20 sem. (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;n/c&#39;]",
+      "0500": "Endometritis (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0629": "Parto obstruido (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0618": "Convulsiones (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0415": "Prueba sífilis treponémica &lt; 20s (enumeration) [&#39;negativo&#39;,&#39;positivo&#39;,&#39;se desconoce&#39;,&#39;no corresponde&#39;]",
+      "0066": "Fumadora activa 2do. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0509": "Rotura uterina (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0566": "Otras infecciones (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0625": "Otros trastornos (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0636": "Embolizaciones (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0472": "Egreso materno - hora (time)",
+      "0424": "Tratamiento sífilis pareja &gt;= 20s (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;se desconoce&#39;,&#39;no corresponde&#39;]",
+      "0474": "Autopsia (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0505": "Embarazo ectópico - hemorragia (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0606": "D.M. insulinodependiente previa (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0617": "Valvulopatía (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0633": "Sufrimiento fetal agudo (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0468": "MAC - EQV femenino - accedido (boolean)",
+      "0418": "Tratamiento sífilis pareja &lt; 20s (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;se desconoce&#39;,&#39;no corresponde&#39;]",
+      "0540": "Administración de hemoderivados (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;s/d&#39;]",
+      "0610": "Hipotiroidismo (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0602": "Defecto de coagulación (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0650": "Hipertensión crónica (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0072": "Fumadora pasiva 3er. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0499": "Pielonefritis (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0628": "Complicaciones obstétricas (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0091": "Tamizaje Antenatal - VIH &lt;20 sem. solicitado (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;n/c&#39;]",
+      "0571": "Fecha Tdap (date)",
+      "0068": "Drogas 2do. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0419": "Semana prueba sífilis No trepon. &gt;= 20s (numeric)",
+      "0484": "Oliguria (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0624": "Trastorno siquiátrico (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0621": "Anemia falciforme (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0075": "Violencia 3er. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0473": "Tipo de egreso (enumeration) [&#39;egreso médico&#39;,&#39;fallece&#39;,&#39;contra consejo médico&#39;,&#39;fuga&#39;,&#39;alta solicitada&#39;,&#39;alta hospitalaria&#39;]",
+      "0508": "DPPNI (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0435": "Tamizaje Antenatal - Prueba VIH &gt;=20 sem. (enumeration) [&#39;positivo&#39;,&#39;negativo&#39;,&#39;n/c&#39;,&#39;s/d&#39;]",
+      "0065": "Violencia 1er.   (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0609": "Trastornos tiroideos (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0596": "Infección episiorrafia (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0611": "Hipertiroidismo (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0504": "Hemorragia post-aborto (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0651": "Pre eclampsia severa (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0423": "Tratamiento sífilis &gt;= 20s (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;se desconoce&#39;,&#39;no corresponde&#39;]",
+      "0543": "Laparotomía (excluye cesárea) (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;s/d&#39;]",
+      "0069": "Alcohol 2do. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0605": "Tolerancia oral a la glucosa anormal (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;no se hizo&#39;]",
+      "0565": "Neumonia (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0537": "Uterotónicos para tto. hemorragia (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;s/d&#39;]",
+      "0600": "Desgarros (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0572": "Semana Tdap (numeric)",
+      "0546": "Uso de ATB IV para tto. de complicación infecciosa (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;s/d&#39;]",
+      "0502": "Sepsis (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0434": "Tamizaje Antenatal - TARV VIH &lt;20 sem. (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;n/c&#39;]",
+      "0622": "Enfermedad renal (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0638": "Balones hidrostáticos (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0074": "Alcohol 3er. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0061": "Fumadora activa 1er. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0064": "Alcohol 1er. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0536": "Alumbramiento manual (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;s/d&#39;]",
+      "0071": "Fumadora activa 3er. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0590": "Infecciones (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0649": "Corioamnionitis (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0413": "Semana prueba sífilis No trepon. &lt; 20s (numeric)",
+      "0303": "Anestesia local (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0199": "Edad gestacional - días (numeric)",
+      "0059": "EG confiable por FUM (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0275": "Hemorragia 3er. trim. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0261": "Eclampsia (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0029": "Antecedentes Eclampsia (personales) (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0205": "Acompañante Parto (enumeration) [&#39;pareja&#39;,&#39;familiar&#39;,&#39;otro&#39;,&#39;ninguno&#39;]",
+      "0095": "Hb&lt;20 sem. (numeric)",
+      "0115": "Tratamiento Sífilis &lt; 20s (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;se desconoce&#39;,&#39;no corresponde&#39;]",
+      "0108": "Glucemia &gt;=30 sem. (numeric)",
+      "0110": "Preparación parto (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0104": "Bacteriuria &gt;=20 sem. (enumeration) [&#39;normal&#39;,&#39;anormal&#39;,&#39;no se hizo&#39;]",
+      "0190": "Inicio parto (enumeration) [&#39;espontáneo&#39;,&#39;inducido&#39;,&#39;cesárea electiva&#39;,&#39;cesárea emergencia&#39;]",
+      "0081": "Examen mamas normal (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0111": "Consejería lactancia (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0183": "Fecha de ingreso (date)",
+      "0017": {
+        "countryId": "",
+        "divisionId": "",
+        "subdivisionId": "",
+        "code": ""
+      },
+      "0202": "Presentación situación (enumeration) [&#39;cefálica&#39;,&#39;pelviana&#39;,&#39;transversa&#39;,&#39;n/a&#39;]",
+      "0041": "Abortos (numeric)",
+      "0030": "Otro antecedente familiar (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0186": "Hospitalización (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0003": "Domicilio (text)",
+      "0101": "Tamizaje Antenatal - Chagas (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+      "0088": "Tamizaje Antenatal - Toxoplasmosis &lt; 20 sem. (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+      "0060": "EG confiable por Eco &lt; 20s (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0099": "Hb&gt;=20 sem. (numeric)",
+      "0383": "Fallece durante traslado (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0044": "RN que viven (numeric)",
+      "0302": "Analgesia (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0055": "Peso anterior (numeric)",
+      "0010": "Edad materna &lt;15 o &gt;35 (boolean)",
+      "0090": "Tamizaje Antenatal - Toxoplasmosis 1er. Consulta (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+      "0013": "Estudios (enumeration) [&#39;ninguno&#39;,&#39;primaria&#39;,&#39;secundaria&#39;,&#39;universidad&#39;,&#39;técnica/vocacional&#39;,&#39;educación especial&#39;]",
+      "0201": "Edad gestacional al parto - por ECO (boolean)",
+      "0109": "Tamizaje Antenatal - Estreptococo B (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+      "0040": "Gestas previas (numeric)",
+      "0033": "Antecedentes Infertilidad (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0023": "Antecedentes Diabetes (personales) (enumeration) [&#39;no&#39;,&#39;tipo I&#39;,&#39;tipo II&#39;,&#39;tipo G&#39;]",
+      "0051": "Fecha embarazo anterior (date)",
+      "0034": "Antecedentes Cardiopatía (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0182": "Parto / Aborto (enumeration) [&#39;parto&#39;,&#39;aborto&#39;]",
+      "0022": "Antecedentes Diabetes (familiares) (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0114": "Prueba Sífilis No treponémica &gt;= 20s (enumeration) [&#39;negativo&#39;,&#39;positivo&#39;,&#39;se desconoce&#39;]",
+      "0056": "Talla madre (numeric)",
+      "0185": "Consultas prenatales (numeric)",
+      "0016": "Vive sola (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0009": "Edad materna (numeric)",
+      "0005": "Teléfono (text)",
+      "0087": "Inmunización (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0098": "Folatos (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0026": "Antecedentes Preclampsia (familiares) (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0048": "Ant. nacidos muertos (numeric)",
+      "0260": "Preeclampsia leve (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0382": "Condición al egreso (enumeration) [&#39;sana&#39;,&#39;fallece&#39;,&#39;con patología&#39;,&#39;traslado/NA&#39;]",
+      "0089": "Tamizaje Antenatal - Toxoplasmosis &gt;= 20 sem. (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+      "0054": "Fracaso método anticonceptivo (enumeration) [&#39;no usaba&#39;,&#39;barrera&#39;,&#39;DIU&#39;,&#39;hormona&#39;,&#39;emergencia&#39;,&#39;natural&#39;,&#39;inyectable&#39;,&#39;SIU&#39;]",
+      "0200": "Edad gestacional al parto - por FUM (boolean)",
+      "0043": "Ant. nacidos vivos (numeric)",
+      "0305": "Anestesia general (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0285": "Embarazo múltiple (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0004": "Localidad (text)",
+      "0049": "Ant. muertos 1a. sem. (numeric)",
+      "0258": "Trastornos hipertensivos (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0027": "Antecedentes Preclampsia (personales) (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0015": "Estado civil (enumeration) [&#39;casada&#39;,&#39;unión estable&#39;,&#39;soltero&#39;,&#39;otro&#39;,&#39;divorciada&#39;,&#39;concubinato&#39;,&#39;comprometida&#39;,&#39;anulada&#39;,&#39;separada&#39;,&#39;legalmente separada&#39;,&#39;viuda&#39;,&#39;solo visitas&#39;]",
+      "0274": "Hemorragia 2do. trim. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0038": "Ultimo RN previo (enumeration) [&#39;no sabe&#39;,&#39;&lt; 2500g&#39;,&#39;normal&#39;,&#39;&gt; 4000g&#39;]",
+      "0012": "Alfabeta (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0032": "Antecedentes Cirugía genito-urinaria (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0204": "Acompañante TDP (enumeration) [&#39;pareja&#39;,&#39;familiar&#39;,&#39;otro&#39;,&#39;ninguno&#39;]",
+      "0080": "Examen odontológico normal (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0039": "Antecedentes gemelares (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0191": "Ruptura de membranas (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0103": "Bacteriuria &lt;20 sem. (enumeration) [&#39;normal&#39;,&#39;anormal&#39;,&#39;no se hizo&#39;]",
+      "0021": "Antecedentes TBC (personales) (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0057": "Fecha última menstruación (date)",
+      "0097": "Hierro (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0024": "Antecedentes Hipertensión (familiares) (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0046": "Partos previos (numeric)",
+      "0035": "Antecedentes Nefropatía (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0086": "Rh (enumeration) [&#39;+&#39;,&#39;-&#39;]",
+      "0301": "Antibióticos (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0198": "Edad gestacional al parto (numeric)",
+      "0304": "Anestesia regional (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0031": "Otro antecedente personal (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0188": "Corticoides (enumeration) [&#39;completo&#39;,&#39;incompleto&#39;,&#39;ninguna&#39;,&#39;n/c&#39;,&#39;multiples&#39;]",
+      "0385": "Anticoncepcion consejeria (enumeration) [&#39;ninguna&#39;,&#39;oral&#39;,&#39;escrita&#39;,&#39;no&#39;,&#39;si&#39;]",
+      "0273": "Hemorragia 1er. trim. (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0050": "Ant. muertos después 1a. sem. (numeric)",
+      "0203": "Tamaño fetal acorde (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0053": "Embarazo planeado (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0184": "Carné (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0093": "Tamizaje Antenatal - VIH &gt;=20 sem. solicitado (enumeration) [&#39;no&#39;,&#39;si&#39;,&#39;n/c&#39;]",
+      "0028": "Antecedentes Eclampsia (familiares) (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0379": "Fecha de egreso materno (date)",
+      "0042": "Partos vaginales (numeric)",
+      "0102": "Tamizaje Antenatal - Malaria (enumeration) [&#39;-&#39;,&#39;+&#39;,&#39;no se hizo&#39;]",
+      "0306": "Transfusión (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0036": "Antecedentes Violencia (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0105": "Glucemia &lt;  20 sem. (numeric)",
+      "0112": "Prueba Sífilis No treponémica &lt; 20s (enumeration) [&#39;negativo&#39;,&#39;positivo&#39;,&#39;se desconoce&#39;]",
+      "0085": "Grupo sanguíneo (text)",
+      "0300": "Ocitócicos en TDP (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0058": "Fecha probable de parto (date)",
+      "0047": "Cesáreas (numeric)",
+      "0018": {
+        "countryId": "",
+        "divisionId": "",
+        "subdivisionId": "",
+        "code": ""
+      },
+      "0025": "Antecedentes Hipertensión (personales) (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "0020": "Antecedentes TBC (familiares) (enumeration) [&#39;no&#39;,&#39;si&#39;]",
+      "prenatal": {
+        "1": {
+          "line_id": "",
+          "0121": "PA sistólica (numeric)",
+          "0119": "Edad gestacional (numeric)",
+          "0394": "PA diastólica (numeric)",
+          "0116": "Fecha consulta (date)",
+          "0120": "Peso (numeric)"
+        },
+        "2": {
+          "line_id": "",
+          "0121": "PA sistólica (numeric)",
+          "0119": "Edad gestacional (numeric)",
+          "0122": "Altura uterina (numeric)",
+          "0125": "Movimientos fetales (code)",
+          "0394": "PA diastólica (numeric)",
+          "0116": "Fecha consulta (date)",
+          "0124": "FCF (lpm) (numeric)",
+          "0120": "Peso (numeric)"
+        }
+      }
+    }
+  },
+  "0011": "Etnia (enumeration) [&#39;blanca&#39;,&#39;indígena&#39;,&#39;mestiza&#39;,&#39;negra&#39;,&#39;otra&#39;,&#39;amarilla&#39;,&#39;afro&#39;,&#39;caucásica&#39;,&#39;china&#39;,&#39;east indian&#39;,&#39;mezcla-african/east indian&#39;,&#39;portuguesa&#39;,&#39;siria/libanés&#39;,&#39;no se indica&#39;,&#39;hispano&#39;,&#39;descendiente indio&#39;,&#39;desconocido&#39;]",
+  "0002": "Apellido (text)",
+  "0006": "Fecha de nacimiento madre (date)",
+  "0019": "Número de identificación (text)"
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#record_ar">/record/AR</a></li></ul></div></div></div></div></body></html>
