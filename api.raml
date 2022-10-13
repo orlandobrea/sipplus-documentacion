@@ -15,6 +15,19 @@ documentation:
       Para ver el diccionario de SIP+ (significado de cada código) visitar [dictionary.js](http://www.sipplus.org/fromDocs/dictionary.js).
 
       Para ver la documentación oficial de los WebServices visitar [Wes services provistos por Sip+](http://www.sipplus.org/fromDocs/webservices-provided.html).
+  - title: Ejemplo de consulta 
+    content: |
+
+      Para obtener los datos del paciente con DNI 12345678 se debe realizar la siguiente consulta 
+
+      ```curl --location -u "sipplus_user:sipplus_password" --request GET 'mi-sip-plus-server.gob.ar:9000/record/AR/DNI/12345678'```
+
+      En donde:
+        * mi-sip-plus-server: es el nombre/IP del servidor de SIP+ (en caso de tener un Reverse Proxy delante, se debe realizar la consulta a ese reverse proxy y utilizar el puerto del mismo)
+        * sipplus_user: es un usuario de SIP+ que tiene permisos para usar la API 
+        * sipplus_password: es la contraseña del usuario de SIP+ 
+        * DNI: es el tipo de documento (puede ser OTR también dependiendo del caso)
+        * 12345678: es el numero de documento de la paciente que se desea obtener la información
 
 
 /record/AR:
